@@ -1,0 +1,16 @@
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+    vector<int>ans(nums.size(),1);
+    for(int i=1;i<nums.size();i++){
+    ans[i]=ans[i-1]*nums[i-1];    //in this we find prefix of every element
+    }
+    
+    long long sufix=1;
+    for(int j=nums.size()-1;j>=0;j--){
+    ans[j]*=sufix;        //in this we multiply with suffix of every element
+    sufix*=nums[j];     //at each step we multiply sufix with its own element
+    }
+        return ans;
+    }
+};
